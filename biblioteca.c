@@ -29,6 +29,13 @@ void cadastarLivro (Livro *livros) {
 }
 
 void cadastrarUsuarios (Usuario *usuarios) {
+    printf("Digite seu melhor email: ");
+    scanf("%s", usuarios->email);
+    printf("\n");
+
+    printf("Digite seu nome: ");
+    scanf("%s", usuarios->nome);
+    printf("\n");
 
 }
 
