@@ -8,8 +8,10 @@ typedef struct livro {
     char titulo[100];
     char autor[100];
     int ano;
-    int codigo;
+    int id;
     int status;
     char emailUsuario[100];
     struct Livro *prox;
 } Livro;
+
+void cadastro (Livro *livros, Usuario *usuarios);

@@ -2,9 +2,22 @@
 #include <stdlib.h>
 #include "biblioteca.h"
 
+int exibirMenu();
+void opcaoMenu (int opcao, Livro *l, Usuario *u);
+void iniciarMenu (Livro *l, Usuario *u);
+
+ 
+int main () {
+    Livro l;
+    Usuario u;
+    iniciarMenu(&l, &u);
+
+    return 0;
+}
+
 
 int exibirMenu(){
-    printf("==== MENU BIBLIOTECA ==== \n");
+    printf("====== MENU BIBLIOTECA ====== \n");
     printf("1. Cadastro \n");
     printf("2. Consulta \n");
     printf("3. Atualização \n");
@@ -22,10 +35,11 @@ int exibirMenu(){
 }
 
 
-void opcaoMenu (int opcao) {
+void opcaoMenu (int opcao, Livro *l, Usuario *u) {
     switch (opcao) {
         case 1:
-
+            cadastro(l, u);
+            break;
         case 2:
 
         case 3:
@@ -47,21 +61,12 @@ void opcaoMenu (int opcao) {
 }
 
 
-void iniciarMenu () {
+void iniciarMenu (Livro *l, Usuario *u) {
     int opcao = -1;
     while (opcao != 0) {
         opcao = exibirMenu();
-        opcaoMenu(opcao); 
+        opcaoMenu(opcao, l, u); 
     }
     printf("Programa finalizado! \n");
 }
 
-
-
-
- 
-int main () {
-    iniciarMenu();
-
-    return 0;
-}
