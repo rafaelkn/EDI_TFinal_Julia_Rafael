@@ -3,11 +3,11 @@
 #include "biblioteca.h"
 
 int exibirMenu();
-void opcaoMenu (int opcao, Livro *l, Usuario *u);
-void iniciarMenu (Livro *l, Usuario *u);
+void opcaoMenu(int opcao, Livro *l, Usuario *u);
+void iniciarMenu(Livro *l, Usuario *u);
 
- 
-int main () {
+int main()
+{
     Livro l;
     Usuario u;
     iniciarMenu(&l, &u);
@@ -15,8 +15,8 @@ int main () {
     return 0;
 }
 
-
-int exibirMenu(){
+int exibirMenu()
+{
     printf("====== MENU BIBLIOTECA ====== \n");
     printf("1. Cadastro \n");
     printf("2. Consulta \n");
@@ -34,39 +34,39 @@ int exibirMenu(){
     return opcao;
 }
 
+void opcaoMenu(int opcao, Livro *l, Usuario *u)
+{
+    switch (opcao)
+    {
+    case 1:
+        cadastro(l, u);
+        break;
+    case 2:
 
-void opcaoMenu (int opcao, Livro *l, Usuario *u) {
-    switch (opcao) {
-        case 1:
-            cadastro(l, u);
-            break;
-        case 2:
+    case 3:
 
-        case 3:
+    case 4:
 
-        case 4:
+    case 5:
 
-        case 5:
+    case 6:
 
-        case 6:
+    case 0:
+        printf("Saindo do programa. Até mais!\n");
+        break;
 
-        case 0:
-            printf ("Saindo do programa. Até mais!\n");
-            break;
-
-        default:
-            printf ("Opção inválida! \n");
-
-    } 
+    default:
+        printf("Opção inválida! \n");
+    }
 }
 
-
-void iniciarMenu (Livro *l, Usuario *u) {
+void iniciarMenu(Livro *l, Usuario *u)
+{
     int opcao = -1;
-    while (opcao != 0) {
+    while (opcao != 0)
+    {
         opcao = exibirMenu();
-        opcaoMenu(opcao, l, u); 
+        opcaoMenu(opcao, l, u);
     }
     printf("Programa finalizado! \n");
 }
-
