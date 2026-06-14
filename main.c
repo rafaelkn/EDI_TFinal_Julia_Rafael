@@ -3,14 +3,33 @@
 #include "biblioteca.h"
 
 int exibirMenu();
-void opcaoMenu(int opcao, Livro *l, Usuario *u);
-void iniciarMenu(Livro *l, Usuario *u);
+void opcaoMenu(int opcao, Livro **l, Usuario **u, int *nextId);
+void iniciarMenu(Livro **l, Usuario **u, int *nextId);
 
 int main()
 {
-    Livro l;
-    Usuario u;
-    iniciarMenu(&l, &u);
+    Livro *l = NULL;
+    Usuario *u = NULL;
+    int nextId = 1;
+
+    iniciarMenu(&l, &u, &nextId);
+
+    //libera livros
+    Livro *aux1 = l;
+    while (aux1 != NULL) {
+        Livro *temp = aux1;
+        aux1 = aux1->next;
+        free (temp);
+    }
+
+    //libera usuario
+    Usuario *aux2 = u;
+    while (aux2 != NULL) {
+        Usuario *temp = aux2;
+        aux2 = aux2->next;
+        free (temp);
+    }
+
 
     return 0;
 }
@@ -34,12 +53,12 @@ int exibirMenu()
     return opcao;
 }
 
-void opcaoMenu(int opcao, Livro *l, Usuario *u)
+void opcaoMenu(int opcao, Livro **l, Usuario **u, int *nextId)
 {
     switch (opcao)
     {
     case 1:
-        cadastro(l, u);
+        cadastro(l, u, nextId);
         break;
     case 2:
 
@@ -60,13 +79,13 @@ void opcaoMenu(int opcao, Livro *l, Usuario *u)
     }
 }
 
-void iniciarMenu(Livro *l, Usuario *u)
+void iniciarMenu(Livro **l, Usuario **u, int *nextId)
 {
     int opcao = -1;
     while (opcao != 0)
     {
         opcao = exibirMenu();
-        opcaoMenu(opcao, l, u);
+        opcaoMenu(opcao, l, u, nextId);
     }
     printf("Programa finalizado! \n");
 }

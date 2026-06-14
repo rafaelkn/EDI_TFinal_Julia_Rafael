@@ -2,7 +2,7 @@ typedef struct usuario
 {
     char email[100];
     char nome[100];
-    struct Usuario *prox;
+    struct usuario *next;
 } Usuario;
 
 typedef struct livro
@@ -13,7 +13,9 @@ typedef struct livro
     int id;
     int status;
     char emailUsuario[100];
-    struct Livro *prox;
+    struct livro *next;
 } Livro;
 
-void cadastro(Livro *livros, Usuario *usuarios);
+void cadastrarLivro(Livro **l, int *nextId);
+void cadastrarUsuario(Usuario **u);
+void Cadastro(Livro **livros, Usuario **usuarios, int *nextId);
