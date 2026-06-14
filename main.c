@@ -14,22 +14,23 @@ int main()
 
     iniciarMenu(&l, &u, &nextId);
 
-    //libera livros
+    // libera livros
     Livro *aux1 = l;
-    while (aux1 != NULL) {
+    while (aux1 != NULL)
+    {
         Livro *temp = aux1;
         aux1 = aux1->next;
-        free (temp);
+        free(temp);
     }
 
-    //libera usuario
+    // libera usuario
     Usuario *aux2 = u;
-    while (aux2 != NULL) {
+    while (aux2 != NULL)
+    {
         Usuario *temp = aux2;
         aux2 = aux2->next;
-        free (temp);
+        free(temp);
     }
-
 
     return 0;
 }
