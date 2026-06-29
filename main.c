@@ -67,7 +67,8 @@ void opcaoMenu(int opcao, Livro **l, Usuario **u, int *nextId)
     case 3:
 
     case 4:
-
+         exclusao(l, u);
+         break;
     case 5:
 
     case 6:

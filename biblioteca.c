@@ -302,4 +302,91 @@ void consulta(Livro *l, Usuario *u)
             printf("Opcao invalida!\n\n");
     }
 }
+void excluirLivro(Livro **l)
+{
+    int id;
+    printf("Codigo do livro a excluir: ");
+    scanf("%d", &id);
+    printf("\n");
  
+    Livro *atual = *l;
+    Livro *anterior = NULL;
+ 
+    while (atual != NULL)
+    {
+        if (atual->id == id)
+        {
+            if (atual->status == 1)
+            {
+                printf("Nao e possivel excluir: livro esta emprestado.\n\n");
+                return;
+            }
+ 
+            // se anterior for NULL, o livro era o primeiro da lista
+            if (anterior == NULL)
+                *l = atual->next;
+            else
+                anterior->next = atual->next;
+ 
+            free(atual);
+            printf("Livro excluido com sucesso!\n\n");
+            return;
+        }
+        anterior = atual;
+        atual = atual->next;
+    }
+ 
+    printf("Livro nao encontrado.\n\n");
+}
+ 
+void excluirUsuario(Usuario **u)
+{
+    char email[100];
+    printf("Email do usuario a excluir: ");
+    scanf("%s", email);
+    printf("\n");
+ 
+    Usuario *atual = *u;
+    Usuario *anterior = NULL;
+ 
+    while (atual != NULL)
+    {
+        if (strcmp(atual->email, email) == 0)
+        {
+            if (anterior == NULL)
+                *u = atual->next;
+            else
+                anterior->next = atual->next;
+ 
+            free(atual);
+            printf("Usuario excluido com sucesso!\n\n");
+            return;
+        }
+        anterior = atual;
+        atual = atual->next;
+    }
+ 
+    printf("Usuario nao cadastrado.\n\n");
+}
+ 
+void exclusao(Livro **l, Usuario **u)
+{
+    int opcao = -1;
+    while (opcao != 0)
+    {
+        printf("==== EXCLUSAO ====\n");
+        printf("1. Livros\n");
+        printf("2. Usuarios\n");
+        printf("0. Voltar\n");
+        printf("Opcao: ");
+        scanf("%d", &opcao);
+        printf("\n");
+ 
+        if (opcao == 1)
+            excluirLivro(l);
+        else if (opcao == 2)
+            excluirUsuario(u);
+        else if (opcao != 0)
+            printf("Opcao invalida!\n\n");
+    }
+}
