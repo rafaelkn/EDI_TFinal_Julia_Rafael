@@ -351,7 +351,8 @@ void excluirUsuario(Usuario **u)
  
     while (atual != NULL)
     {
-        if (strcmp(atual->email, email) == 0)
+        if (strcmp(atual->email, email) == 0)//  strcmp precisei perguntar para ia poi não sabia como fazia para comparar
+        //  duas strings!! Ela retorna 0 quando as duas são iguais, o problema é que em C você não pode comparar strings com == diretamente como faria com números por isso existe o strcmp.
         {
             if (anterior == NULL)
                 *u = atual->next;
@@ -390,3 +391,33 @@ void exclusao(Livro **l, Usuario **u)
             printf("Opcao invalida!\n\n");
     }
 }
+
+void devolucao(Livro **l)
+{
+    int id;
+    printf("Codigo do livro a devolver: ");
+    scanf("%d", &id);
+    printf("\n");
+ 
+    Livro *aux = *l;
+    while (aux != NULL)
+    {
+        if (aux->id == id)
+        {
+            if (aux->status == 0)
+            {
+                printf("Este livro nao esta emprestado.\n\n");
+                return;
+            }
+ 
+            aux->status = 0;
+            aux->emailUsuario[0] = '\0';
+            printf("Devolucao realizada com sucesso!\n\n");
+            return;
+        }
+        aux = aux->next;
+    }
+ 
+    printf("Livro nao encontrado.\n\n");
+}
+ 

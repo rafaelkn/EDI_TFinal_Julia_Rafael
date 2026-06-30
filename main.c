@@ -72,6 +72,8 @@ void opcaoMenu(int opcao, Livro **l, Usuario **u, int *nextId)
     case 5:
 
     case 6:
+     devolucao(l);
+        break;
 
     case 0:
         printf("Saindo do programa. Até mais!\n");

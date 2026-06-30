@@ -30,3 +30,6 @@ void consulta(Livro *l, Usuario *u);
 void excluirLivro(Livro **l);
 void excluirUsuario(Usuario **u);
 void exclusao(Livro **l, Usuario **u);
+
+void devolucao(Livro **l);
+ 
