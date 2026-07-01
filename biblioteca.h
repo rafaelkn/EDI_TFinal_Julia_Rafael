@@ -18,7 +18,7 @@ typedef struct livro
 
 void cadastrarLivro(Livro **l, int *nextId);
 void cadastrarUsuario(Usuario **u);
-void Cadastro(Livro **livros, Usuario **usuarios, int *nextId);
+void cadastro(Livro **livros, Usuario **usuarios, int *nextId);
 
 void consultarLivroPorCodigo(Livro *l);
 void consultarLivroPorAutor(Livro *l);
@@ -27,9 +27,12 @@ void consultarUsuarioPorNome(Usuario *u);
 void consultarEmprestimos(Livro *l, Usuario *u);
 void consulta(Livro *l, Usuario *u);
 
+void atualizarLivro(Livro **livros);
+void atualizarUsuario(Usuario **usuarios);
+void atualizacao(Livro **livros, Usuario **usuarios);
+
 void excluirLivro(Livro **l);
 void excluirUsuario(Usuario **u);
 void exclusao(Livro **l, Usuario **u);
 
 void devolucao(Livro **l);
- 
