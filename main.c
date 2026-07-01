@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "biblioteca.h"
 
+int lerInteiro(char mensagem[]);
 int exibirMenu();
 void opcaoMenu(int opcao, Livro **l, Usuario **u, int *nextId);
 void iniciarMenu(Livro **l, Usuario **u, int *nextId);
@@ -46,9 +47,7 @@ int exibirMenu()
     printf("6. Devolução \n");
     printf("0. Sair\n\n");
 
-    int opcao;
-    printf("Escolha uma opção: ");
-    scanf("%d", &opcao);
+    int opcao = lerInteiro("Escolha uma opção: ");
     printf("\n");
 
     return opcao;
@@ -65,12 +64,14 @@ void opcaoMenu(int opcao, Livro **l, Usuario **u, int *nextId)
         consulta(*l, *u);
         break;
     case 3:
-
+        atualizacao(l, u);
+        break;
     case 4:
         exclusao(l, u);
         break;
     case 5:
-
+        emprestimo(l, u);
+        break;
     case 6:
         devolucao(l);
         break;

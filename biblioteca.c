@@ -3,6 +3,29 @@
 #include <string.h>
 #include "biblioteca.h"
 
+/* pedi ajuda para amigos de estrutura de dados II, pois não queria
+usar o chat e os fóruns na internet não estavam me trazendo soluções plauzíveis*/
+int lerInteiro(char mensagem[])
+{ // recebe a mensagem como parametro (como se fosse o printf em cima do scanf)
+    int valor;
+
+    while (1)
+    {
+        printf("%s", mensagem);
+
+        if (scanf("%d", &valor) == 1)
+        { // se o usuario digitar um inteiro, scanf vai retornar 1, vai guardar o inteiro em valor, e vai retornar valor
+            return valor;
+        }
+
+        // se o usuario digitar abc, o scanf vai retornar 0 (por nao conseguir converter para inteiro) e vai cair no printf debaixo
+        printf("Erro: digite um número inteiro válido!\n");
+
+        while (getchar() != '\n')
+            ; // limpa buffer
+    }
+}
+
 void cadastrarLivro(Livro **l, int *nextId)
 {
     Livro *new = malloc(sizeof(Livro));
@@ -20,8 +43,7 @@ void cadastrarLivro(Livro **l, int *nextId)
     scanf("%s", new->autor);
     printf("\n");
 
-    printf("Digite o ano de publicação");
-    scanf("%d", &new->ano);
+    new->ano = lerInteiro("Digite o ano de publicação: ");
     printf("\n");
 
     new->id = *nextId;
@@ -89,8 +111,7 @@ void cadastro(Livro **livros, Usuario **usuarios, int *nextId)
         printf("2. Usuários \n");
         printf("0. Voltar \n");
 
-        printf("Escolha uma opção: ");
-        scanf("%d", &opcao);
+        opcao = lerInteiro("Escolha uma opção: ");
         printf("\n");
 
         if (opcao == 1)
@@ -114,8 +135,7 @@ void cadastro(Livro **livros, Usuario **usuarios, int *nextId)
 void consultarLivroPorCodigo(Livro *l)
 {
     int id;
-    printf("Codigo do livro: ");
-    scanf("%d", &id);
+    id = lerInteiro("Codigo do livro: ");
     printf("\n");
 
     Livro *aux = l;
@@ -266,15 +286,13 @@ void consulta(Livro *l, Usuario *u)
         printf("2. Usuarios\n");
         printf("3. Emprestimos\n");
         printf("0. Voltar\n");
-        printf("Opcao: ");
-        scanf("%d", &opcao);
+
+        opcao = lerInteiro("Opcao: ");
         printf("\n");
 
         if (opcao == 1)
         {
-            int sub;
-            printf("1. Por codigo\n2. Por autor\nOpcao: ");
-            scanf("%d", &sub);
+            int sub = lerInteiro("1. Por codigo\n2. Por autor\nOpcao: ");
             printf("\n");
             if (sub == 1)
                 consultarLivroPorCodigo(l);
@@ -285,9 +303,7 @@ void consulta(Livro *l, Usuario *u)
         }
         else if (opcao == 2)
         {
-            int sub;
-            printf("1. Por email\n2. Por nome\nOpcao: ");
-            scanf("%d", &sub);
+            int sub = lerInteiro("1. Por email\n2. Por nome\nOpcao: ");
             printf("\n");
             if (sub == 1)
                 consultarUsuarioPorEmail(u);
@@ -305,9 +321,7 @@ void consulta(Livro *l, Usuario *u)
 
 void atualizarLivro(Livro **livros)
 {
-    int id;
-    printf("Digite o Id do livro que deseja atualizar: ");
-    scanf("%d", &id);
+    int id = lerInteiro("Digite o Id do livro que deseja atualizar: ");
     printf("\n");
 
     Livro *aux = *livros;
@@ -336,8 +350,7 @@ void atualizarLivro(Livro **livros)
         printf("3. Ano \n");
         printf("0. Voltar \n");
 
-        printf("Escolha uma opção: ");
-        scanf("%d", &opcao);
+        opcao = lerInteiro("Escolha uma opção: ");
         printf("\n");
 
         if (opcao != 1 && opcao != 2 && opcao != 3 && opcao != 0)
@@ -366,8 +379,7 @@ void atualizarLivro(Livro **livros)
         else if (opcao == 3)
         {
             printf("Ano atual: %d \n", aux->ano);
-            printf("Digite o novo ano do livro: ");
-            scanf("%d", &aux->ano);
+            aux->ano = lerInteiro("Digite o novo ano do livro: ");
             printf("\n");
             printf("Ano atualizado com sucesso! \n\n");
         }
@@ -414,8 +426,7 @@ void atualizacao(Livro **livros, Usuario **usuarios)
         printf("2. Usuários \n");
         printf("0. Voltar \n");
 
-        printf("Escolha uma opção: ");
-        scanf("%d", &opcao);
+        opcao = lerInteiro("Escolha uma opção: ");
         printf("\n");
 
         if (opcao == 1)
@@ -438,9 +449,7 @@ void atualizacao(Livro **livros, Usuario **usuarios)
 
 void excluirLivro(Livro **l)
 {
-    int id;
-    printf("Codigo do livro a excluir: ");
-    scanf("%d", &id);
+    int id = lerInteiro("Codigo do livro a excluir: ");
     printf("\n");
 
     Livro *atual = *l;
@@ -513,8 +522,8 @@ void exclusao(Livro **l, Usuario **u)
         printf("1. Livros\n");
         printf("2. Usuarios\n");
         printf("0. Voltar\n");
-        printf("Opcao: ");
-        scanf("%d", &opcao);
+
+        opcao = lerInteiro("Opcao: ");
         printf("\n");
 
         if (opcao == 1)
@@ -528,9 +537,7 @@ void exclusao(Livro **l, Usuario **u)
 
 void emprestimo(Livro **livros, Usuario **usuarios)
 {
-    int id;
-    printf("Codigo do livro que deseja pegar emprestado: ");
-    scanf("%d", &id);
+    int id = lerInteiro("Codigo do livro que deseja pegar emprestado: ");
     printf("\n");
 
     Livro *auxl = *livros;
@@ -585,9 +592,7 @@ void emprestimo(Livro **livros, Usuario **usuarios)
 
 void devolucao(Livro **l)
 {
-    int id;
-    printf("Codigo do livro a devolver: ");
-    scanf("%d", &id);
+    int id = lerInteiro("Codigo do livro a devolver: ");
     printf("\n");
 
     Livro *aux = *l;
