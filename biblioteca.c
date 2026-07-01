@@ -526,6 +526,63 @@ void exclusao(Livro **l, Usuario **u)
     }
 }
 
+void emprestimo(Livro **livros, Usuario **usuarios)
+{
+    int id;
+    printf("Codigo do livro que deseja pegar emprestado: ");
+    scanf("%d", &id);
+    printf("\n");
+
+    Livro *auxl = *livros;
+    while (auxl != NULL)
+    {
+        if (auxl->id == id)
+        {
+            break;
+        }
+        auxl = auxl->next;
+    }
+
+    if (auxl == NULL)
+    {
+        printf("Livro não encontrado! \n\n");
+        return;
+    }
+
+    if (auxl->status == 1)
+    {
+        printf("O livro já está emprestado! Lamentamos :( \n\n");
+        return;
+    }
+
+    char email[100];
+    printf("Digite o email do usuário: ");
+    scanf("%s", email);
+    printf("\n");
+
+    Usuario *auxu = *usuarios;
+    while (auxu != NULL)
+    {
+        if (strcmp(auxu->email, email) == 0)
+        {
+            break;
+        }
+        auxu = auxu->next;
+    }
+
+    if (auxu == NULL)
+    {
+        printf("Usuário nao encontrado! \n\n");
+        return;
+    }
+
+    auxl->status = 1;
+    strcpy(auxl->emailUsuario, email); // pedi pro chat pois tinha esquecido que char não pode atribuir com =
+    // não é só comparação que precisa de uma função específica
+
+    printf("Empréstimo realizado com sucesso! \n\n");
+}
+
 void devolucao(Livro **l)
 {
     int id;
