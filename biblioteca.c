@@ -3,26 +3,25 @@
 #include <string.h>
 #include "biblioteca.h"
 
-/* pedi ajuda para amigos de estrutura de dados II, pois não queria
+/* para a funcao abaixo, pedi ajuda para amigos de estrutura de dados II, pois não queria
 usar o chat e os fóruns na internet não estavam me trazendo soluções plauzíveis*/
-int lerInteiro(char mensagem[])
-{ // recebe a mensagem como parametro (como se fosse o printf em cima do scanf)
+int lerInteiro(char mensagem[]) // recebe a mensagem como parametro (como se fosse o printf em cima do scanf)
+{ 
     int valor;
 
     while (1)
     {
         printf("%s", mensagem);
 
-        if (scanf("%d", &valor) == 1)
-        { // se o usuario digitar um inteiro, scanf vai retornar 1, vai guardar o inteiro em valor, e vai retornar valor
+        if (scanf("%d", &valor) == 1) // se o usuario digitar um inteiro, scanf vai retornar 1, vai guardar o inteiro em valor, e vai retornar valor
+        { 
             return valor;
         }
 
         // se o usuario digitar abc, o scanf vai retornar 0 (por nao conseguir converter para inteiro) e vai cair no printf debaixo
         printf("Erro: digite um número inteiro válido!\n");
 
-        while (getchar() != '\n')
-            ; // limpa buffer
+        while (getchar() != '\n'); // limpa buffer
     }
 }
 
