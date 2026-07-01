@@ -62,14 +62,18 @@ void opcaoMenu(int opcao, Livro **l, Usuario **u, int *nextId)
         cadastro(l, u, nextId);
         break;
     case 2:
-
+        consulta(*l, *u);
+        break;
     case 3:
 
     case 4:
-
+         exclusao(l, u);
+         break;
     case 5:
 
     case 6:
+     devolucao(l);
+        break;
 
     case 0:
         printf("Saindo do programa. Até mais!\n");
